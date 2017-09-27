@@ -1,0 +1,12 @@
+
+.button {
+  font-size: 30px;
+   background-color: cyan;
+   color: black;
+   border: 2px solid #4CAF50; /* Green */
+}
+
+.div1{
+    border:1px solid blue;
+    max-width: 500px;
+}
