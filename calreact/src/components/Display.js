@@ -12,21 +12,20 @@ class Display extends Component {
         API.result(x)
             .then((output) => {
                     this.setState({
-                        data: status
+                        data: output
                     });
                   })
                 };
 
     buttonClick = (val) => {
-console.log(val);
       this.setState({inp: this.state.inp+val});
     };
 
     render() {
         return (
-          <div>
+          <div className="container well div1">
           <center>
-          <h1>CALCULATOR</h1><br/>
+          <h1><b>CALCULATOR</b></h1><br/>
           <form>
           <b>INPUT:</b> <input id="numbers" type="text" value={this.state.inp}></input><br/><br/>
           <input type="button" id="one" value="1" onClick={() => this.buttonClick("1")}></input>
@@ -47,7 +46,7 @@ console.log(val);
           <input type="button" id="div" value="/" onClick={() => this.buttonClick("/")}></input><br/>
           <input type="button" id="clear" value="clear" onClick={() => this.setState({data:"",
                                                                                       inp:""})}></input><br/><br/>
-          RESULT: <input type="text" id="outString" value={this.state.data}></input><br/>
+          <b>RESULT:</b> <input type="text" id="outString" value={this.state.data}></input><br/>
          </form>
          </center>
          </div>

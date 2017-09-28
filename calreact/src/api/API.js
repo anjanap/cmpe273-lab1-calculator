@@ -12,10 +12,10 @@ export const result = (payload) =>
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(payload)
-    })
+    }).then(res=>res.json())
     .then(res => {
-      console.log("This is: "+res.status);
-        return res.status;
+      console.log("This is: "+res.output);
+        return res.output;
     })
         .catch(error => {
             console.log("This is error");
