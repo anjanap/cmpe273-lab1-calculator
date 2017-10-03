@@ -5,10 +5,13 @@ import './Display.css';
 class Display extends Component {
     state = {
         data:'',
-        inp:''
+        inp1:'',
+        inp2:'',
+        op:''
     };
 
-    handleSubmit = (x) => {
+    handleSubmit = (x,y) => {
+      x.op=y;
         API.result(x)
             .then((output) => {
                     this.setState({
@@ -27,25 +30,20 @@ class Display extends Component {
           <center>
           <h1><b>CALCULATOR</b></h1><br/>
           <form>
-          <b>INPUT:</b> <input id="numbers" type="text" value={this.state.inp}></input><br/><br/>
-          <input type="button" id="one" value="1" onClick={() => this.buttonClick("1")}></input>
-          <input type="button" id="two" value="2" onClick={() => this.buttonClick("2")}></input>
-          <input type="button" id="three" value="3" onClick={() => this.buttonClick("3")}></input>
-          <input type="button" id="add" value="+" onClick={() => this.buttonClick("+")}></input><br/>
-          <input type="button" id="four" value="4" onClick={() => this.buttonClick("4")}></input>
-          <input type="button" id="five" value="5" onClick={() => this.buttonClick("5")}></input>
-          <input type="button" id="six" value="6" onClick={() => this.buttonClick("6")}></input>
-          <input type="button" id="sub" value="-" onClick={() => this.buttonClick("-")}></input><br/>
-          <input type="button" id="seven" value="7" onClick={() => this.buttonClick("7")}></input>
-          <input type="button" id="eight" value="8" onClick={() => this.buttonClick("8")}></input>
-          <input type="button" id="nine" value="9" onClick={() => this.buttonClick("9")}></input>
-          <input type="button" id="three" value="*" onClick={() => this.buttonClick("*")}></input><br/>
-          <input type="button" id="decimal" value="." onClick={() => this.buttonClick(".")}></input>
-          <input type="button" id="zero" value="0" onClick={() => this.buttonClick("0")}></input>
-          <button type="button" onClick={() => this.handleSubmit(this.state)}> = </button>
-          <input type="button" id="div" value="/" onClick={() => this.buttonClick("/")}></input><br/>
+           <input id="number1" type="number" pattern="^[0-9]*$" placeholder="Number 1" onChange={(event)=>{
+                                         this.setState({inp1: event.target.value});}} value={this.state.inp1}></input>
+           <input id="number2" type="number" pattern="^[0-9]*$" placeholder="Number 2" onChange={(event)=>{
+                                         this.setState({inp2: event.target.value});}} value={this.state.inp2}></input><br/><br/>
+
+          <input type="button" id="add" value="+" onClick={()=> this.handleSubmit(this.state,'+')}></input>
+          <input type="button" id="sub" value="-" onClick={()=> this.handleSubmit(this.state,'-')}></input><br/>
+
+          <input type="button" id="mul" value="*" onClick={()=> this.handleSubmit(this.state,'*')}></input>
+          <input type="button" id="div" value="/" onClick={()=> this.handleSubmit(this.state,'/')}></input><br/><br/>
+
           <input type="button" id="clear" value="clear" onClick={() => this.setState({data:"",
-                                                                                      inp:""})}></input><br/><br/>
+                                                                                      inp1:"",
+                                                                                      inp2:""})}></input><br/><br/>
           <b>RESULT:</b> <input type="text" id="outString" value={this.state.data}></input><br/>
          </form>
          </center>
